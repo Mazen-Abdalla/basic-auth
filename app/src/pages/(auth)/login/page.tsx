@@ -8,9 +8,15 @@ import {
 } from "@/components/ui/card";
 import LoginForm from "./_components/login-form";
 import { Link, useLocation } from "react-router-dom";
+import { Separator } from "@/components/ui/separator";
+import { Button } from "@/components/ui/button";
 
 const LoginPage = () => {
   const location = useLocation();
+
+  const handleLoginWithGoogle = () => {
+    window.open(`http://localhost:3500/api/auth/google`, "_self");
+  };
 
   return (
     <div className="h-screen w-full grid place-content-center">
@@ -24,7 +30,7 @@ const LoginPage = () => {
         <CardContent>
           <LoginForm />
         </CardContent>
-        <CardFooter>
+        <CardFooter className="flex flex-col gap-2">
           <span className="text-sm">
             Don't have an Account?
             <Link
@@ -35,6 +41,14 @@ const LoginPage = () => {
               Register
             </Link>
           </span>
+
+          <div className="flex gap-1 w-full items-center">
+            <Separator className="flex-1 w-0" />
+            <span>OR</span>
+            <Separator className="flex-1 w-0" />
+          </div>
+
+          <Button onClick={handleLoginWithGoogle}>Continue with google</Button>
         </CardFooter>
       </Card>
     </div>

@@ -22,6 +22,7 @@ const {
   resizeProfileImage,
   uploadProfileImage,
 } = require("../controller/user.controller");
+const { loginLimiter, resendOtpLimiter } = require("../middleware/rateLimiter");
 
 const router = Router();
 
@@ -32,10 +33,15 @@ router.post(
   registerValidator,
   register
 );
-router.post("/login", loginValidator, login);
+router.post("/login", loginLimiter, loginValidator, login);
 router.get("/refresh", refresh);
 router.delete("/logout", logout);
-router.post("/forget-password", forgetPasswordValidator, forgetPassword);
+router.post(
+  "/forget-password",
+  resendOtpLimiter,
+  forgetPasswordValidator,
+  forgetPassword
+);
 router.post("/confirm-reset", confirmResetValidator, confirmReset);
 router.post("/reset-password", resetPasswordValidator, resetPassword);
 

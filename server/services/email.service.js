@@ -1,3 +1,4 @@
+const path = require("path");
 const nodemailer = require("nodemailer");
 const ejs = require("ejs");
 
@@ -13,7 +14,7 @@ const sendEmail = async (options) => {
   let htmlText = "";
   if (options?.template) {
     htmlText = await ejs.renderFile(
-      `${process.cwd()}${options?.template}`,
+      path.join(__dirname, "..", options?.template),
       options.data || null
     );
   }
