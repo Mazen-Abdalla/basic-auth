@@ -1,4 +1,9 @@
-const allowedOrigins = ["*", null];
+const allowedOrigins = [
+  "http://localhost:3500/",
+  "https://basic-auth-gamma.vercel.app/",
+  "*",
+  null,
+];
 
 const corsOptions = {
   origin: (origin, callback) => {
