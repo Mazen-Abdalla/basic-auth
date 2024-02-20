@@ -16,6 +16,7 @@ if (process.env.NODE_ENV !== "production") app.use(logger("dev"));
 // GLOBAL MIDDLEWARE
 app.use(helmet());
 app.use(cors(require("./config/cors")));
+app.options("*", cors());
 app.use(cookieParser());
 app.use(express.json({ limit: "10kb" }));
 app.use(express.urlencoded({ extended: false }));
