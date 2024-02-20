@@ -10,6 +10,9 @@ const { setRefreshTokenCookie } = require("./services/auth.service");
 
 const app = express();
 
+// LOGGER
+if (process.env.NODE_ENV !== "production") app.use(logger("dev"));
+
 // GLOBAL MIDDLEWARE
 app.use(helmet());
 app.use(cors(require("./config/cors")));
@@ -17,9 +20,6 @@ app.use(cookieParser());
 app.use(express.json({ limit: "10kb" }));
 app.use(express.urlencoded({ extended: false }));
 app.use(passport.initialize());
-
-// LOGGER
-if (process.env.NODE_ENV !== "production") app.use(logger("dev"));
 
 // STATIC FOLDER
 app.use(express.static(path.join(__dirname, "public")));
