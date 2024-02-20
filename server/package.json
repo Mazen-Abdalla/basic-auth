@@ -1,8 +1,11 @@
 {
-  "name": "yassin",
+  "name": "base-auth",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
+  "engines": {
+    "node": "18.x"
+  },
   "scripts": {
     "build": "npm i",
     "start": "node server.js",
