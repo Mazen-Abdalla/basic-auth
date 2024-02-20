@@ -9,14 +9,10 @@ import {
 import LoginForm from "./_components/login-form";
 import { Link, useLocation } from "react-router-dom";
 import { Separator } from "@/components/ui/separator";
-import { Button } from "@/components/ui/button";
+import GoogleLoginBtn from "@/components/google-login-btn";
 
 const LoginPage = () => {
   const location = useLocation();
-
-  const handleLoginWithGoogle = () => {
-    window.open(`http://localhost:3500/api/auth/google`, "_self");
-  };
 
   return (
     <div className="h-screen w-full grid place-content-center">
@@ -48,7 +44,7 @@ const LoginPage = () => {
             <Separator className="flex-1 w-0" />
           </div>
 
-          <Button onClick={handleLoginWithGoogle}>Continue with google</Button>
+          <GoogleLoginBtn />
         </CardFooter>
       </Card>
     </div>

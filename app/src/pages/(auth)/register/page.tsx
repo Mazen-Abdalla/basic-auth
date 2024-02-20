@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/card";
 import LoginForm from "./_components/register-form";
 import { Link, useLocation } from "react-router-dom";
+import GoogleLoginBtn from "@/components/google-login-btn";
 
 const RegisterPage = () => {
   const location = useLocation();
@@ -22,7 +23,7 @@ const RegisterPage = () => {
         <CardContent>
           <LoginForm />
         </CardContent>
-        <CardFooter>
+        <CardFooter className="flex flex-col gap-2">
           <span className="text-sm">
             Already have an Account?
             <Link
@@ -33,6 +34,8 @@ const RegisterPage = () => {
               login
             </Link>
           </span>
+
+          <GoogleLoginBtn />
         </CardFooter>
       </Card>
     </div>
