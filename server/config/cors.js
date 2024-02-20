@@ -1,6 +1,6 @@
 const allowedOrigins = [
-  "http://localhost:5173/",
-  "https://basic-auth-gamma.vercel.app/",
+  "http://localhost:5173",
+  "https://basic-auth-gamma.vercel.app",
   "*",
   null,
 ];
