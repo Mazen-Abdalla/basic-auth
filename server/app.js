@@ -6,7 +6,11 @@ const helmet = require("helmet");
 const logger = require("morgan");
 const passport = require("./config/passport");
 const errors = require("./utils/response/errors");
-const { setRefreshTokenCookie } = require("./services/auth.service");
+const {
+  generateAccessToken,
+  generateRefreshToken,
+} = require("./services/auth.service");
+const UserCredentials = require("./models/userCredential.model");
 
 const app = express();
 
@@ -39,11 +43,19 @@ app.get(
   "/api/auth/google/callback",
   passport.authenticate("google", { session: false }),
   async (req, res) => {
-    const { refreshToken } = req.user;
+    const { userId } = req.user;
 
-    setRefreshTokenCookie(res, refreshToken);
+    const accessToken = generateAccessToken(userId);
+    const refreshToken = generateRefreshToken(userId);
 
-    res.redirect(process.env.CLIENT_URL);
+    await UserCredentials.findOneAndUpdate(
+      { user: userId },
+      { tokens: [refreshToken] }
+    );
+
+    const deepLink = `myapp://auth?accessToken=${accessToken}&refreshToken=${refreshToken}`;
+
+    res.redirect(deepLink);
   }
 );
 
