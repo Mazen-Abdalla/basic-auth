@@ -45,8 +45,8 @@ app.get(
   async (req, res) => {
     const { userId } = req.user;
 
-    const accessToken = generateAccessToken(userId);
-    const refreshToken = generateRefreshToken(userId);
+    const accessToken = generateAccessToken({ userId });
+    const refreshToken = generateRefreshToken({ userId });
 
     await UserCredentials.findOneAndUpdate(
       { user: userId },

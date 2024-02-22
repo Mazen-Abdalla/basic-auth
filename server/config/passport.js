@@ -19,7 +19,7 @@ passport.use(
       });
 
       if (userExist) {
-        return done(null, { userId: userExist.user });
+        return done(null, { userId: userExist.user.toString() });
       } else {
         const user = await User.create({
           name: profile._json.name,
@@ -34,7 +34,7 @@ passport.use(
           providerId: profile.id,
         });
 
-        return done(null, { userId: user._id });
+        return done(null, { userId: user._id.toString() });
       }
     }
   )
